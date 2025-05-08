@@ -3,8 +3,8 @@ package utils
 import (
 	"fmt"
 
+	"github.com/fatih/color"
 	"github.com/samber/do"
-  "github.com/fatih/color"
 )
 
 type Logger interface {
@@ -55,19 +55,19 @@ func NewLogger(tags ...string) Logger {
 }
 
 func (l *loggerImpl) Debg(msg string) {
-  l.logf(color.HiBlackString("DEBG"), l.tags, msg)
+	l.logf(color.HiBlackString("DEBG"), l.tags, msg)
 }
 func (l *loggerImpl) Succ(msg string) {
-  l.logf(color.HiGreenString("SUCC"), l.tags, msg)
+	l.logf(color.HiGreenString("SUCC"), l.tags, msg)
 }
 func (l *loggerImpl) Info(msg string) {
-  l.logf(color.HiCyanString("INFO"), l.tags, msg)
+	l.logf(color.HiCyanString("INFO"), l.tags, msg)
 }
 func (l *loggerImpl) Warn(msg string) {
-  l.logf(color.HiYellowString("WARN"), l.tags, msg)
+	l.logf(color.HiYellowString("WARN"), l.tags, msg)
 }
 func (l *loggerImpl) Error(msg string) {
-  l.logf(color.HiRedString("ERR "), l.tags, msg)
+	l.logf(color.HiRedString("ERR "), l.tags, msg)
 }
 
 func (l *loggerImpl) GetChild(name string) Logger {
@@ -91,5 +91,5 @@ func (l *loggerFactoryImpl) Create(tags ...string) Logger {
 }
 
 func NewLoggerFactory(i *do.Injector) (LoggerFactory, error) {
-  return &loggerFactoryImpl{}, nil
+	return &loggerFactoryImpl{}, nil
 }
