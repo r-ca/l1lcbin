@@ -1,4 +1,4 @@
-package l1lcbin
+package main
 
 import (
 	"github.com/r-ca/l1lc-bin/internal/utils"
@@ -11,4 +11,11 @@ func main() {
 
   // Register the logger
   do.Provide(injector, utils.NewLoggerFactory)
+
+  // Get logger(for Bootloader)
+
+  loggerFactory := do.MustInvoke[utils.LoggerFactory](injector)
+  logger := loggerFactory.Create("boot")
+
+  logger.Succ("Hello, world!")
 }
