@@ -3,7 +3,7 @@ package utils
 import (
 	"fmt"
 
-	// "github.com/samber/do"
+	"github.com/samber/do"
 )
 
 type Logger interface {
@@ -79,16 +79,16 @@ func (l *loggerImpl) GetChild(name string) Logger {
 }
 
 type LoggerFactory interface {
-	CreateLogger(tags ...string) Logger
+	Create(tags ...string) Logger
 }
 
 type loggerFactoryImpl struct {
 }
 
-func (l *loggerFactoryImpl) Create(tags ...string) LoggerFactory {
-	return &loggerFactoryImpl{}
+func (l *loggerFactoryImpl) Create(tags ...string) Logger {
+	return NewLogger(tags...)
 }
 
-func (l *loggerFactoryImpl) CreateLogger(tags ...string) Logger {
-	return NewLogger(tags...)
+func NewLoggerFactory(i *do.Injector) LoggerFactory {
+  return &loggerFactoryImpl{}
 }
