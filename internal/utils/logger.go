@@ -89,6 +89,6 @@ func (l *loggerFactoryImpl) Create(tags ...string) Logger {
 	return NewLogger(tags...)
 }
 
-func NewLoggerFactory(i *do.Injector) LoggerFactory {
-  return &loggerFactoryImpl{}
+func NewLoggerFactory(i *do.Injector) (LoggerFactory, error) {
+  return &loggerFactoryImpl{}, nil
 }
